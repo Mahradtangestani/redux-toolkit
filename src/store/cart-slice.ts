@@ -29,7 +29,7 @@ export const cartSlice = createSlice({
                 state.items.push({...action.payload , quantity: 1})
             }
         },
-        removeToCart(state , action:PayloadAction<string>){
+        removeFromCart(state , action:PayloadAction<string>){
             const itemIndex = state.items.findIndex((item) => item.id === action.payload)
 
             if(state.items[itemIndex].quantity === 1){
@@ -40,4 +40,7 @@ export const cartSlice = createSlice({
         }
     }
 })
+
+
+export const {addToCart , removeFromCart} = cartSlice.actions
 
