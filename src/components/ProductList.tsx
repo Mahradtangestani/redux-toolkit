@@ -8,7 +8,7 @@ type ProductListProps = {
 function ProductList({children}:ProductListProps){
     return (
         <div className="product-list">
-            <div className="product-item">
+            <div className="product-items">
                 {children}
             </div>
         </div>
