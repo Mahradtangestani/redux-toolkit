@@ -1,5 +1,6 @@
-import { useDispatch } from "react-redux"
+
 import { addToCart } from "../store/cart-slice"
+import { useCartDispatch } from "../store/hooks"
 
 type ProductProps = {
     id:string
@@ -11,7 +12,7 @@ type ProductProps = {
 
 function Product({id , title , price , image}:ProductProps){
    
-   const dispatch = useDispatch()
+   const dispatch = useCartDispatch()
 
    const handleAddToCart = ()=>{
       dispatch(addToCart({id , title , price}))
@@ -25,7 +26,7 @@ function Product({id , title , price , image}:ProductProps){
             <p className="product-price">{price}</p>
          </div>
          <p className="product-actions">
-            <button>افزودن به سبد خرید</button>
+            <button onClick={handleAddToCart}>افزودن به سبد خرید</button>
          </p>
     </div>
    )
