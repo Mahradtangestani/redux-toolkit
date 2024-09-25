@@ -1,4 +1,4 @@
-import { addToCart, type CartItem } from "../store/cart-slice";
+import { addToCart, removeFromCart, type CartItem } from "../store/cart-slice";
 import { useCartDispatch, useCartSelector } from "../store/hooks";
 
 function CartItems() {
@@ -12,6 +12,9 @@ function CartItems() {
     const handleAddToCart = (item: CartItem)=>{
          dispatch(addToCart(item))
     }
+    const handleRemoveToCart = (id:string)=>{
+         dispatch(removeFromCart(id))
+    }
 
     return (
         <div>
@@ -24,9 +27,9 @@ function CartItems() {
                                 <span>{item.title}</span>
                             </div>
                             <div className="cart-item-actions">
-                                <button>-</button>
+                                <button onClick={()=>handleRemoveToCart(item.id)}>-</button>
                                 <span>{item.quantity}</span>
-                                <button>+</button>
+                                <button onClick={()=>handleAddToCart(item)}>+</button>
                             </div>
                         </li>
                     )
