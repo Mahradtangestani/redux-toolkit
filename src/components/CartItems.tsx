@@ -9,16 +9,16 @@ function CartItems() {
 
     const dispatch = useCartDispatch()
 
-    const handleAddToCart = (item: CartItem)=>{
-         dispatch(addToCart(item))
+    const handleAddToCart = (item: CartItem) => {
+        dispatch(addToCart(item))
     }
-    const handleRemoveToCart = (id:string)=>{
-         dispatch(removeFromCart(id))
+    const handleRemoveToCart = (id: string) => {
+        dispatch(removeFromCart(id))
     }
 
     return (
         <div>
-            <p>محصولی در سبد خرید وجود ندارد</p>
+            {cartItems.length === 0 && <p>محصولی در سبد خرید وجود ندارد...!</p>}
             <ul className="cart-items">
                 {cartItems.map(item => {
                     return (
@@ -27,18 +27,18 @@ function CartItems() {
                                 <span>{item.title}</span>
                             </div>
                             <div className="cart-item-actions">
-                                <button onClick={()=>handleRemoveToCart(item.id)}>-</button>
+                                <button onClick={() => handleRemoveToCart(item.id)}>-</button>
                                 <span>{item.quantity}</span>
-                                <button onClick={()=>handleAddToCart(item)}>+</button>
+                                <button onClick={() => handleAddToCart(item)}>+</button>
                             </div>
                         </li>
                     )
                 })}
             </ul>
 
-            <p className="cart-total-price">
+            {cartItems.length > 0 && <p className="cart-total-price">
                 مجموع: <strong>{totalPrice}</strong> تومان
-            </p>
+            </p>}
         </div>
     )
 }
